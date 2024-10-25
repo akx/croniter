@@ -9,11 +9,6 @@ def read(*rnames):
         os.path.join('.', *rnames), encoding="utf-8"
     ).read()
 
-install_requires = [
-    a.strip()
-    for a in read('requirements/base.txt').splitlines()
-    if a.strip() and not a.startswith(('#', '-'))
-]
 
 long_description = "\n\n".join(
     [
@@ -35,7 +30,10 @@ setup(
     author_email='taichino@gmail.com, kiorky@cryptelium.net',
     url='http://github.com/kiorky/croniter',
     keywords='datetime, iterator, cron',
-    install_requires=install_requires,
+    install_requires=[
+        "python_dateutil",
+        "pytz>2021.1",
+    ],
     license="MIT License",
     python_requires='>=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
