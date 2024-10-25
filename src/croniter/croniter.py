@@ -20,9 +20,15 @@ import calendar
 import binascii
 import random
 
-# as pytz is optional in thirdparty libs but we need it for good support under
-# python2, just test that it's well installed
-import pytz  # noqa
+
+try:
+    # py3 recent
+    UTC_DT = datetime.timezone.utc
+except AttributeError:
+    # as pytz is optional in thirdparty libs but we need it for good support under
+    # python2, just test that it's well installed
+    import pytz  # noqa
+    UTC_DT = pytz.utc
 
 
 def is_32bit():
@@ -121,11 +127,6 @@ YEAR_CRON_LEN = len(YEAR_FIELDS)
 # retrocompat
 VALID_LEN_EXPRESSION = set([a for a in CRON_FIELDS if isinstance(a, int)])
 EXPRESSIONS = {}
-try:
-    # py3 recent
-    UTC_DT = datetime.timezone.utc
-except AttributeError:
-    UTC_DT = pytz.utc
 
 
 def timedelta_to_seconds(td):

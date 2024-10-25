@@ -32,7 +32,7 @@ setup(
     keywords='datetime, iterator, cron',
     install_requires=[
         "python_dateutil",
-        "pytz>2021.1",
+        "pytz>2021.1;python_version<'3.9'",
     ],
     license="MIT License",
     python_requires='>=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
