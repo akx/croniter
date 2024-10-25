@@ -34,7 +34,7 @@ jobs:
       run: |
         set -ex
         python -m pip install --upgrade --use-pep517 pip
-        pip install --use-pep517 -r requirements/test.txt
+        pip install --use-pep517 -r requirements/test.txt tox-direct
         pyver=$(python --version 2>&1 | awk '{print substr($2, 0, 4)}' | awk '{ sub(/[ \t]+$/, ""); print }')
         tox --direct -e "py${pyver//\.}-{std,coverage}"
 
